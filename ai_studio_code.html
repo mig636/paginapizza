@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Noir Pizza Experience | Vibe Studio</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Frameworks & Libs -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        noir: '#0A0A0A',
+                        crimson: '#E63946',
+                        offwhite: '#F5F5F5',
+                        darkGray: '#1A1A1A',
+                    },
+                    fontFamily: {
+                        display:['Playfair Display', 'serif'],
+                        body:['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0A0A0A;
+            color: #F5F5F5;
+            overflow-x: hidden;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .text-reveal {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        .glow-button {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .glow-button:hover {
+            box-shadow: 0 0 20px rgba(230, 57, 70, 0.4);
+            transform: scale(1.05);
+        }
+
+        .glass-nav {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .menu-card img {
+            transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .menu-card:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0A0A0A; }
+        ::-webkit-scrollbar-thumb { background: #E63946; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 w-full z-50 glass-nav px-6 py-4 flex justify-between items-center">
+        <div class="text-2xl font-display font-bold tracking-tighter">
+            VIBE<span class="text-crimson">.</span>PIZZA
+        </div>
+        
+        <div class="hidden md:flex gap-8 text-sm uppercase tracking-widest font-light">
+            <a href="#menu" class="hover:text-crimson transition-colors">O Menu</a>
+            <a href="#arte" class="hover:text-crimson transition-colors">A Arte</a>
+            <a href="#footer" class="hover:text-crimson transition-colors">Localização</a>
+        </div>
+
+        <button class="magnetic-btn glow-button bg-crimson px-6 py-2 text-sm font-bold uppercase tracking-tighter">
+            Pedir Agora
+        </button>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden pt-20">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center z-10">
+            <div class="reveal">
+                <h1 class="text-5xl md:text-8xl font-display leading-none mb-6">
+                    A Alquimia do <br><span class="italic text-crimson">Fogo e do Trigo.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-400 max-w-md mb-8 font-light">
+                    Fermentação natural por 48h, ingredientes de origem controlada e o segredo do forno a 450°C.
+                </p>
+                <div class="flex gap-4">
+                    <button class="magnetic-btn border border-offwhite/20 px-8 py-4 hover:bg-offwhite hover:text-noir transition-all duration-500 uppercase text-xs tracking-widest">
+                        Explorar Menu
+                    </button>
+                </div>
+            </div>
+            
+            <div class="relative h-[500px] md:h-[700px] overflow-hidden rounded-sm parallax-img">
+                <img 
+                    src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=2070" 
+                    alt="Pizza Artesanal" 
+                    class="w-full h-full object-cover scale-110"
+                >
+            </div>
+        </div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-10 pointer-events-none">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-crimson/5 to-transparent"></div>
+        </div>
+    </section>
+
+    <!-- SECTION "A ARTE" -->
+    <section id="arte" class="py-24 bg-darkGray">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="order-2 md:order-1 rounded-sm overflow-hidden h-[600px] reveal">
+                    <img 
+                        src="https://images.unsplash.com/photo-1555072956-7758afb20e8f?auto=format&fit=crop&q=80&w=1887" 
+                        alt="Macro Ingredientes" 
+                        class="w-full h-full object-cover"
+                    >
+                </div>
+                <div class="order-1 md:order-2 reveal">
+                    <span class="text-crimson uppercase tracking-[0.3em] text-xs mb-4 block">Manifesto</span>
+                    <h2 class="text-4xl md:text-6xl font-display mb-8">Onde a tradição encontra o caos controlado.</h2>
+                    <p class="text-gray-400 leading-relaxed mb-6 text-lg">
+                        Nossa massa não é apenas alimento; é um organismo vivo. Respeitamos o tempo do trigo, a pureza da água e a intensidade da chama. Cada bolha na borda conta uma história de 48 horas de paciência.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed italic border-l border-crimson pl-6">
+                        "A perfeição não está na simetria, mas na alma de cada ingrediente colhido no seu ápice."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU INTERATIVO -->
+    <section id="menu" class="py-24 px-6 overflow-hidden">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+                <div class="reveal">
+                    <span class="text-crimson uppercase tracking-[0.3em] text-xs mb-4 block">The Selection</span>
+                    <h2 class="text-5xl md:text-7xl font-display">Nossas Obras</h2>
+                </div>
+                <p class="text-gray-500 max-w-xs text-right hidden md:block uppercase text-[10px] tracking-widest">
+                    Disponibilidade limitada por noite devido à maturação da massa.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+                
+                <!-- Item 1 - CORRIGIDO O LINK DA MARGHERITA -->
+                <div class="menu-card group cursor-pointer reveal">
+                    <div class="overflow-hidden mb-6 aspect-[3/4]">
+                        <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&q=80&w=1000" alt="Margherita Royale" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div class="pr-4">
+                            <h3 class="text-2xl font-display mb-2">Margherita Royale</h3>
+                            <p class="text-gray-500 text-sm">Tomate San Marzano, Mozzarella di Bufala DOP, Manjericão Genovês, Azeite Extra Virgem.</p>
+                        </div>
+                        <span class="text-crimson font-body italic text-xl">R$ 89</span>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="menu-card group cursor-pointer reveal">
+                    <div class="overflow-hidden mb-6 aspect-[3/4]">
+                        <img src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&q=80&w=1000" alt="Diavola Noir" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div class="pr-4">
+                            <h3 class="text-2xl font-display mb-2">Diavola Noir</h3>
+                            <p class="text-gray-500 text-sm">Salame picante artesanal, Mel trufado, Pimenta fermentada da casa, Fior di Latte.</p>
+                        </div>
+                        <span class="text-crimson font-body italic text-xl">R$ 102</span>
+                    </div>
+                </div>
+
+                <!-- Item 3 - CORRIGIDO O LINK PARA NÃO REPETIR A FOTO DO BANNER -->
+                <div class="menu-card group cursor-pointer reveal">
+                    <div class="overflow-hidden mb-6 aspect-[3/4]">
+                        <img src="https://images.unsplash.com/photo-1528830984461-4d5c3cc1abf0?auto=format&fit=crop&q=80&w=1000" alt="Trufa Branca" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div class="pr-4">
+                            <h3 class="text-2xl font-display mb-2">Trufa Branca</h3>
+                            <p class="text-gray-500 text-sm">Creme de trufas brancas de Alba, Cogumelos Porcini frescos, Flor de Sal, Grana Padano.</p>
+                        </div>
+                        <span class="text-crimson font-body italic text-xl">R$ 145</span>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="menu-card group cursor-pointer reveal">
+                    <div class="overflow-hidden mb-6 aspect-[3/4]">
+                        <img src="https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?auto=format&fit=crop&q=80&w=1000" alt="Burrata & Prosciutto" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div class="pr-4">
+                            <h3 class="text-2xl font-display mb-2">Burrata & Parma</h3>
+                            <p class="text-gray-500 text-sm">Prosciutto di Parma 24 meses, Burrata fresca cremosa, Figos caramelizados, Redução de balsâmico.</p>
+                        </div>
+                        <span class="text-crimson font-body italic text-xl">R$ 128</span>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="menu-card group cursor-pointer reveal">
+                    <div class="overflow-hidden mb-6 aspect-[3/4]">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&q=80&w=1000" alt="Oceano Negro" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div class="pr-4">
+                            <h3 class="text-2xl font-display mb-2">Oceano Negro</h3>
+                            <p class="text-gray-500 text-sm">Massa com tinta de lula, Camarões rosa flambados no conhaque, Stracciatella, Zest de limão siciliano.</p>
+                        </div>
+                        <span class="text-crimson font-body italic text-xl">R$ 156</span>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="menu-card group cursor-pointer reveal">
+                    <div class="overflow-hidden mb-6 aspect-[3/4]">
+                        <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&q=80&w=1000" alt="Pistacchio" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div class="pr-4">
+                            <h3 class="text-2xl font-display mb-2">Pistacchio & Mortadella</h3>
+                            <p class="text-gray-500 text-sm">Mortadela italiana com pistache, Pesto de pistache de Bronte, Ricota de ovelha, Manjericão.</p>
+                        </div>
+                        <span class="text-crimson font-body italic text-xl">R$ 115</span>
+                    </div>
+                </div>
+
+                <!-- Item 7 -->
+                <div class="menu-card group cursor-pointer reveal">
+                    <div class="overflow-hidden mb-6 aspect-[3/4]">
+                        <img src="https://images.unsplash.com/photo-1552539618-7eec9b4d1796?auto=format&fit=crop&q=80&w=1000" alt="Caviar & Salmão" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div class="pr-4">
+                            <h3 class="text-2xl font-display mb-2">Caviar & Salmão</h3>
+                            <p class="text-gray-500 text-sm">Creme fraîche, Lâminas de salmão curado na casa, Caviar Ossetra, Ceboulette fina.</p>
+                        </div>
+                        <span class="text-crimson font-body italic text-xl">R$ 280</span>
+                    </div>
+                </div>
+
+                <!-- Item 8 -->
+                <div class="menu-card group cursor-pointer reveal">
+                    <div class="overflow-hidden mb-6 aspect-[3/4]">
+                        <img src="https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&q=80&w=1000" alt="Fungi Selvagem" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div class="pr-4">
+                            <h3 class="text-2xl font-display mb-2">Fungi Selvagem</h3>
+                            <p class="text-gray-500 text-sm">Mix de cogumelos silvestres na brasa, Queijo Taleggio, Tomilho fresco, Azeite de trufa negra.</p>
+                        </div>
+                        <span class="text-crimson font-body italic text-xl">R$ 110</span>
+                    </div>
+                </div>
+
+                <!-- Item 9 -->
+                <div class="menu-card group cursor-pointer reveal">
+                    <div class="overflow-hidden mb-6 aspect-[3/4]">
+                        <img src="https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?auto=format&fit=crop&q=80&w=1000" alt="Cordeiro & Hortelã" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div class="pr-4">
+                            <h3 class="text-2xl font-display mb-2">Cordeiro & Hortelã</h3>
+                            <p class="text-gray-500 text-sm">Ragù de cordeiro cozido por 12h no vinho tinto, Queijo pecorino romano, Pesto de hortelã fresca.</p>
+                        </div>
+                        <span class="text-crimson font-body italic text-xl">R$ 134</span>
+                    </div>
+                </div>
+
+                <!-- Item 10: THE SIGNATURE PIZZA (Spans Full Width on Desktop) -->
+                <div class="menu-card group cursor-pointer reveal col-span-1 md:col-span-2 lg:col-span-3 mt-8 border border-white/10 p-4 md:p-8 bg-black/50">
+                    <div class="flex flex-col lg:flex-row gap-8 items-center">
+                        <div class="overflow-hidden aspect-video lg:w-2/3 w-full">
+                            <img src="https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?auto=format&fit=crop&q=80&w=2000" alt="Ouro Negro" class="w-full h-full object-cover">
+                        </div>
+                        <div class="lg:w-1/3 w-full flex flex-col justify-center">
+                            <div class="flex items-center gap-3 mb-4">
+                                <i data-lucide="crown" class="text-crimson w-5 h-5"></i>
+                                <span class="text-crimson uppercase tracking-[0.3em] text-xs font-bold">A Assinatura</span>
+                            </div>
+                            <h3 class="text-4xl font-display mb-4">Ouro Negro</h3>
+                            <p class="text-gray-400 text-md leading-relaxed mb-6">
+                                A epítome da indulgência. Wagyu A5 importado do Japão maçaricado na mesa, foie gras selado, alho negro maturado por 90 dias, e finalizada delicadamente com folhas de ouro comestível 24k.
+                            </p>
+                            <span class="text-crimson font-body italic text-3xl">R$ 350</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION EXPERIÊNCIA -->
+    <section class="relative py-48 overflow-hidden">
+        <div class="absolute inset-0">
+            <img 
+                src="https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?auto=format&fit=crop&q=80&w=2000" 
+                alt="Fire" 
+                class="w-full h-full object-cover opacity-30 scale-125 experience-bg"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-noir via-transparent to-noir"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="reveal">
+                <i data-lucide="flame" class="mx-auto text-crimson w-12 h-12 mb-6"></i>
+                <h2 class="text-4xl md:text-7xl font-display mb-8">450°C de Precisão.</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto font-light">
+                    O calor que sela o sabor em 90 segundos. Uma explosão térmica que transforma água e farinha em arte efêmera.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="footer" class="bg-noir pt-24 pb-12 border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-20">
+                <div class="col-span-2">
+                    <div class="text-3xl font-display font-bold mb-8">VIBE PIZZA</div>
+                    <p class="text-gray-500 max-w-sm mb-8 italic">
+                        "Onde o luxo encontra a brasa e o paladar encontra o silêncio."
+                    </p>
+                    <div class="flex gap-6">
+                        <i data-lucide="instagram" class="hover:text-crimson cursor-pointer transition-colors"></i>
+                        <i data-lucide="facebook" class="hover:text-crimson cursor-pointer transition-colors"></i>
+                        <i data-lucide="twitter" class="hover:text-crimson cursor-pointer transition-colors"></i>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-crimson uppercase text-xs tracking-widest mb-6">Horários</h4>
+                    <p class="text-sm text-gray-400 mb-2 font-light">Terça a Quinta: 19h — 23h</p>
+                    <p class="text-sm text-gray-400 mb-2 font-light">Sexta e Sábado: 19h — 00h</p>
+                    <p class="text-sm text-gray-400 font-light">Domingo: 18h — 22h</p>
+                </div>
+                <div>
+                    <h4 class="text-crimson uppercase text-xs tracking-widest mb-6">Endereço</h4>
+                    <p class="text-sm text-gray-400 font-light leading-relaxed">
+                        Av. da Gastronomia, 1000<br>
+                        Distrito Noir, Vibe City
+                    </p>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 text-[10px] text-gray-600 uppercase tracking-widest gap-4">
+                <p>&copy; 2025 Vibe Studio - Todos os direitos reservados.</p>
+                <div class="flex gap-8">
+                    <span>Privacy Policy</span>
+                    <span>Terms of Service</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Parallax Effect
+        gsap.to(".parallax-img img", {
+            yPercent: 15,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".parallax-img",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+
+        // Global Reveal Animation
+        gsap.from(".reveal", {
+            opacity: 0,
+            y: 50,
+            duration: 1.2,
+            stagger: 0.15,
+            ease: "power4.out",
+            scrollTrigger: {
+                trigger: ".reveal",
+                start: "top 85%",
+            }
+        });
+
+        // Experience Background Parallax
+        gsap.to(".experience-bg", {
+            scale: 1,
+            scrollTrigger: {
+                trigger: ".experience-bg",
+                scrub: 1
+            }
+        });
+
+        // Magnetic Button Effect
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
+
+        magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                gsap.to(btn, {
+                    x: x * 0.3,
+                    y: y * 0.3,
+                    duration: 0.4,
+                    ease: "power2.out"
+                });
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.6,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        });
+
+        // Horizontal Card Interaction Zoom Simulation
+        document.querySelectorAll('.menu-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card.querySelector('img'), { scale: 1.1, duration: 0.8 });
+            });
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card.querySelector('img'), { scale: 1, duration: 0.8 });
+            });
+        });
+    </script>
+</body>
+</html>
